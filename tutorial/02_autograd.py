@@ -4,11 +4,10 @@ import torch
 # INITIALIZATION
 
 x = torch.randn(3, requires_grad=True)
+print(x)
 y = x + 2
 z = y*y*2
 z = z.mean()
-print(y)
-print(z)
 
 # ############################################################################################
 # NOTE: When we use required_grad = True, pytorch creates a computational graph
@@ -22,4 +21,9 @@ print(z)
 
 # COMPUTING BACK-PROPAGATION
 z.backward() # dz/dx
-print(f"Gradients of z: {x.grad}")
+
+# STOPPING BACKWARD FLOW OF GRADIENTS
+# Option 1: x.requires_grad_(False)
+# Option 2: y = x.detach() --> Creates a new tensor without gradients
+# Option 3: with torch.no_grad():
+
