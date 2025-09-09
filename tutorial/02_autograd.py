@@ -27,3 +27,26 @@ z.backward() # dz/dx
 # Option 2: y = x.detach() --> Creates a new tensor without gradients
 # Option 3: with torch.no_grad():
 
+# TRAINING EXAMPLE
+weights = torch.ones(4, requires_grad=True)
+
+for epoch in range(2):
+    model_output = (weights*3).sum()
+
+    model_output.backward()
+
+    print(weights.grad)
+
+    # Important step
+    weights.grad.zero_()
+
+# ############################################################################################
+# NOTE: The grad attribute contains the accumulation of all previous gradients
+# Output: For 2 loops, output is as below.
+# tensor([0.9784, 0.6461, 0.3201], requires_grad=True)
+# tensor([3., 3., 3., 3.])
+# tensor([6., 6., 6., 6.])
+
+# This is incorrect as we require fresh gradients for each iteration.
+# We need to zero out the gradients
+# ############################################################################################
