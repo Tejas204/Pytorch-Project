@@ -4,7 +4,6 @@ import torch
 # INITIALIZATION
 
 x = torch.randn(3, requires_grad=True)
-print(x)
 y = x + 2
 z = y*y*2
 z = z.mean()
@@ -35,7 +34,7 @@ for epoch in range(2):
 
     model_output.backward()
 
-    print(weights.grad)
+    # print(weights.grad)
 
     # Important step
     weights.grad.zero_()
@@ -50,3 +49,25 @@ for epoch in range(2):
 # This is incorrect as we require fresh gradients for each iteration.
 # We need to zero out the gradients
 # ############################################################################################
+
+# BACKPROPAGATION
+input = torch.tensor(1.0)
+weight = torch.tensor(2.0, requires_grad=True)
+actual = torch.tensor(4.0)
+
+# Perform forward pass, get the loss
+y_hat = weight * input
+print(f"Input: {input}")
+print(f"Weight: {weight}")
+print(f"y hat: {y_hat}")
+loss = (y_hat - actual)**2
+
+print(f"Loss is: {loss}")
+
+# Perform backward pass
+loss.backward()
+print(weight.grad)
+
+# Update weight
+weight = weight - 1*(weight.grad)
+print(f"Updated weight: {weight}")
