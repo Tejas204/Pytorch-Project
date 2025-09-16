@@ -25,7 +25,7 @@ def gradients(x, y, y_predicted):
 print(f"Predction before training for f(5): {forward(5):.3f}")
 
 # Training
-epochs = 10
+epochs = 20
 learning_rate = 0.01
 
 
