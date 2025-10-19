@@ -35,6 +35,10 @@ for epoch in range(epochs):
     error.backward()
 
     # Update parameters
+    # No need to track the gradients when updating weights
+    # If we don't use below, torch would include it in computation graph causing
+    # - unnecessary memory usage
+    # - incorrect gradient computation as future passes would try to compute gradients through the weight updates
     with torch.no_grad():
         w -= learning_rate * w.grad
 

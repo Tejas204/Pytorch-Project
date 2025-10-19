@@ -34,7 +34,7 @@ for epoch in range(2):
 
     model_output.backward()
 
-    # print(weights.grad)
+    print(weights.grad)
 
     # Important step
     weights.grad.zero_()
