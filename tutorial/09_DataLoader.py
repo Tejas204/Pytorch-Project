@@ -47,4 +47,8 @@ for epoch in range(num_epochs):
         if (i+1) % 5 == 0:
             print(f'epoch {epoch+1}/{num_epochs}, step {i+1}/{n_iterations}, inputs {inputs.shape}')
 
+# Built in datasets, ex: fashion-mnist, coco
+# torchvision.datasets.MNIST()
+
+
 
