@@ -1,5 +1,4 @@
 import torch
-import numpy as np
 import torch.nn as nn
 import torch.nn.functional as F
 
@@ -27,6 +26,6 @@ class NeuralNetwork(nn.Module):
         self.linear2 = nn.Linear(hidden_size, 1)
 
     def forward(self, x):
-        out = torch.relu(self.linear1(x))
+        out = torch.relu(self.linear1(x)) #F.relu() <==> torch.relu()
         out = torch.sigmoid(self.linear2(out))
         return out
