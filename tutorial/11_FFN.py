@@ -3,6 +3,7 @@ import numpy as np
 import torch.nn as nn
 import torch.nn.functional as F
 
+# Option 1: Use activation function in init function
 class NeuralNet(nn.Module):
     def __init__(self, input_size, hidden_size):
         super(NeuralNet, self).__init__()
@@ -16,4 +17,16 @@ class NeuralNet(nn.Module):
         out = self.relu(out)
         out = self.linear2(out)
         out = self.sigmoid(out)
+        return out
+    
+# Option 2: Use activation functions in forward
+class NeuralNetwork(nn.Module):
+    def __init__(self, input_size, hidden_size):
+        super(NeuralNetwork, self).__init__()
+        self.linear1 = nn.Linear(input_size, hidden_size)
+        self.linear2 = nn.Linear(hidden_size, 1)
+
+    def forward(self, x):
+        out = torch.relu(self.linear1(x))
+        out = torch.sigmoid(self.linear2(out))
         return out
